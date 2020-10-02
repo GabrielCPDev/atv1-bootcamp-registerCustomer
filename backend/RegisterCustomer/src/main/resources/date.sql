@@ -1,0 +1,1 @@
+INSERT INTO TB_CLIENT (birth_Date, children, cpf, income, name) VALUES (TIMESTAMP WITH TIME ZONE '2020-07-13T20:50:07.12345Z', 2, '45698712332', 'Goku');
