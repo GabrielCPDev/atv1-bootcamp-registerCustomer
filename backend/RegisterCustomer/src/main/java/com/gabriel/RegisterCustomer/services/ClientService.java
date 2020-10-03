@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.gabriel.RegisterCustomer.dto.ClientDTO;
 import com.gabriel.RegisterCustomer.entities.Client;
 import com.gabriel.RegisterCustomer.repositories.ClientRepository;
+import com.gabriel.RegisterCustomer.services.exceptions.ResourceNotFoundException;
 
 @Service
 public class ClientService {
@@ -31,7 +32,7 @@ public class ClientService {
 	@Transactional(readOnly = true)
 	public ClientDTO findById (Long id) {
 		Optional<Client> obj = repository.findById(id);
-		Client entity = obj.orElseThrow(() -> new RuntimeException("Entity not found"));
+		Client entity = obj.orElseThrow(() -> new ResourceNotFoundException("Entity not found"));
 		return new ClientDTO(entity);
 	}
 	
@@ -52,7 +53,7 @@ public class ClientService {
 		return new ClientDTO(entity);
 		}
 		catch(EntityNotFoundException e) {
-			throw new RuntimeException("Id not found: " + id);
+			throw new ResourceNotFoundException("Id not found: " + id);
 		}
 	}
 	
